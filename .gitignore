@@ -1,0 +1,4 @@
+# Build output (rebuild with build.ps1)
+*.vsix
+node_modules/
+.vscode-test/

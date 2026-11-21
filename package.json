@@ -1,0 +1,63 @@
+{
+  "name": "claude-usage",
+  "displayName": "Claude Usage",
+  "description": "Shows your Claude plan utilization (5-hour session and weekly limits) and Claude Code token usage in the VS Code status bar.",
+  "version": "0.1.0",
+  "publisher": "local",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "claudeUsage.showDetails",
+        "title": "Show Details",
+        "category": "Claude Usage"
+      },
+      {
+        "command": "claudeUsage.refresh",
+        "title": "Refresh",
+        "category": "Claude Usage"
+      }
+    ],
+    "configuration": {
+      "title": "Claude Usage",
+      "properties": {
+        "claudeUsage.fetchPlanUsage": {
+          "type": "boolean",
+          "default": true,
+          "description": "Fetch plan limits (the same numbers as /usage in Claude Code) from Anthropic using your existing Claude Code login. When off, only local token counts are shown."
+        },
+        "claudeUsage.refreshIntervalSeconds": {
+          "type": "number",
+          "default": 120,
+          "minimum": 60,
+          "description": "How often (seconds) to fetch plan utilization from Anthropic."
+        },
+        "claudeUsage.claudeDir": {
+          "type": "string",
+          "default": "",
+          "description": "Claude Code config folder. Leave empty to use CLAUDE_CONFIG_DIR or ~/.claude."
+        },
+        "claudeUsage.warningThreshold": {
+          "type": "number",
+          "default": 75,
+          "description": "Percent at which the status bar turns yellow."
+        },
+        "claudeUsage.criticalThreshold": {
+          "type": "number",
+          "default": 90,
+          "description": "Percent at which the status bar turns red."
+        }
+      }
+    }
+  }
+}
